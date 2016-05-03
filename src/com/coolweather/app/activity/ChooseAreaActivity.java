@@ -11,12 +11,11 @@ import com.coolweather.app.model.Province;
 import com.coolweather.app.util.HttpCallbackListener;
 import com.coolweather.app.util.HttpUtil;
 import com.coolweather.app.util.Utility;
-
+import android.view.*;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -70,7 +69,8 @@ adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, da
 listView.setAdapter(adapter);
 coolWeatherDB = CoolWeatherDB.getInstance(this);
 listView.setOnItemClickListener(new OnItemClickListener() {
-public void onItemClick1(AdapterView<?> arg0, View view, int index,
+@Override
+public void onItemClick(AdapterView<?> arg0, View view, int index,
 long arg3) {
 if (currentLevel == LEVEL_PROVINCE) {
 selectedProvince = provinceList.get(index);
@@ -79,12 +79,6 @@ queryCities();
 selectedCity = cityList.get(index);
 queryCounties();
 }
-}
-
-@Override
-public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-	// TODO Auto-generated method stub
-	
 }
 });
 queryProvinces(); // 加载省级数据
